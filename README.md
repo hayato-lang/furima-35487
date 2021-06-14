@@ -51,7 +51,8 @@
 - has_one :shipping
 
 ## shippingsテーブル
-
+| Column          | Types      | Options                        | 
+| --------------- | ---------- | ------------------------------ | 
 | postal_code     | string     | null: false                    | 
 | prefecture_id   | integer    | null: false                    | 
 | municipality    | string     | null: false                    | 
