@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :fee
@@ -16,9 +15,9 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
-  with_options numericality: {other_than: 1} do
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :fee_id
     validates :prefecture_id
