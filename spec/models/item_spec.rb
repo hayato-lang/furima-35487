@@ -69,7 +69,7 @@ RSpec.describe Item, type: :model do
       it '販売価格が空では保存できないこと' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it '販売価格が、¥300以下では保存できないこと' do
