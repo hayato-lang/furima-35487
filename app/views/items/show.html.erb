@@ -29,11 +29,12 @@
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
 
+    <% else %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
-
     <% end %>
+
 
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
@@ -41,28 +42,28 @@
     <table class="detail-table">
       <tbody>
         <tr>
-          <th class="detail-item"><%= @item.user.nickname %></th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <th class="detail-item">出品者名</th>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
-          <th class="detail-item"><%= @item.category.name %></th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <th class="detail-item">カテゴリー名</th>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
-          <th class="detail-item"><%= @item.status.name %></th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <th class="detail-item">商品の状態</th>
+          <td class="detail-value"><%= @item.status.name %></td>
         </tr>
         <tr>
-          <th class="detail-item"><%= @item.fee.name %></th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <th class="detail-item">発送料の負担</th>
+          <td class="detail-value"><%= @item.fee.name %></td>
         </tr>
         <tr>
-          <th class="detail-item"><%= @item.prefecture.name %></th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <th class="detail-item">発送元の地域</th>
+          <td class="detail-value"><%= @item.prefecture.name %></td>
         </tr>
         <tr>
-          <th class="detail-item"><%= @item.shipping_day.name %></th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <th class="detail-item">発送日の目安</th>
+          <td class="detail-value"><%= @item.shipping_day.name %></td>
         </tr>
       </tbody>
     </table>
