@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+  before_action :authenticate_user!, expect: [:index, :show]
   before_action :set_item, only: [:show, :destroy, :edit, :update]
   before_action :user_authentication, expect: [:index, :show]
 
