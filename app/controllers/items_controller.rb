@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
   before_action :set_item, only: [:show, :destroy, :edit, :update]
-  before_action :user_authentication, only: [:edit, :destroy, :update]
+  before_action :user_authentication, expect: [:index, :show]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def user_authentication
-    unless user_signed_in? && current_user.id == @item.user_id
+    unless current_user.id == @item.user_id
       redirect_to root_path
     end
   end
