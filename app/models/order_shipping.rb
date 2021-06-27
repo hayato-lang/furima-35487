@@ -1,6 +1,6 @@
 class OrderShipping
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture, :municipality, :address, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :user_id
@@ -9,8 +9,8 @@ class OrderShipping
     validates :municipality
     validates :address
     validates :phone_number
+    validates :prefecture_id, numericality: {other_than: 1}
   end
-  validates :prefecture_id, numericality: {other_than: 0}
 
   def save
     @order = Order.create(user_id: user_id, item_id: item_id)
