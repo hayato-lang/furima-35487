@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :user_authentication, only: [:edit, :update, :destroy]
 
   def index
+    @order = Order.includes(:user, :item).order('created_at DESC')
     @items = Item.includes(:user).order('created_at DESC')
   end
 
