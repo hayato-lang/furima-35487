@@ -29,7 +29,7 @@ RSpec.describe OrderShipping, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でなければ登録できないこと' do
         @order_shipping.postal_code = '1234567'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_shipping.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'prefecture_idが空では保存できないこと' do
@@ -41,9 +41,9 @@ RSpec.describe OrderShipping, type: :model do
       it 'prefecture_idが1では保存できないこと' do
         @order_shipping.prefecture_id = 1
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@order_shipping.errors.full_messages).to include('Prefecture must be other than 1')
       end
-      
+
       it 'municipalityが空では保存できないこと' do
         @order_shipping.municipality = ''
         @order_shipping.valid?
@@ -65,7 +65,7 @@ RSpec.describe OrderShipping, type: :model do
       it 'phone_numberが11桁以上の数値では登録できないこと' do
         @order_shipping.phone_number = '090012345678'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'tokenが空では登録できないこと' do
@@ -73,8 +73,6 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end
-
