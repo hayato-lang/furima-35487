@@ -2,8 +2,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :destroy, :edit, :update]
   before_action :user_authentication, only: [:edit, :update, :destroy]
+  before_action :sold_out, only: [:edit]
 
   def index
+    @order = Order.includes(:user, :item).order('created_at DESC')
     @items = Item.includes(:user).order('created_at DESC')
   end
 
@@ -51,8 +53,10 @@ class ItemsController < ApplicationController
   end
 
   def user_authentication
-    unless current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.id == @item.user_id
+  end
+
+  def sold_out
+    redirect_to root_path unless @item.order.nil?
   end
 end
