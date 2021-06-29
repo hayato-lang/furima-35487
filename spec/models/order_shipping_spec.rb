@@ -68,6 +68,42 @@ RSpec.describe OrderShipping, type: :model do
         expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
       end
 
+      it 'phone_numberが9桁では登録できないこと' do
+        @order_shipping.phone_number = '090123456'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it 'phone_numberが数字のみでないと登録できないこと（英数字混合）' do
+        @order_shipping.phone_number = '090abcdefg'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it 'phone_numberが数字のみでないと登録できないこと（ハイフンあり）' do
+        @order_shipping.phone_number = '63-4871-12'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it 'phone_numberが全角文字では登録できないこと' do
+        @order_shipping.phone_number = '０９０４３２１５６７８'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it 'Userが紐付いていないと登録できないこと' do
+        @order_shipping.user_id = nil
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'Itemが紐づいていないと登録できない' do
+        @order_shipping.item_id = nil
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
+      end
+
       it 'tokenが空では登録できないこと' do
         @order_shipping.token = ''
         @order_shipping.valid?
